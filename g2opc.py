@@ -4,11 +4,22 @@
 A script to convert a file with point charges in Gaussian format
 to a point charge file in ORCA format 
 
-Created on Fri Apr 14 07:36:39 2023
+argument # 1 - name of gaussian point charge file
+optional argument # 2 - name of orca point charge file to be written
 
+Created on Fri Apr 14 07:36:39 2023
 @author: borowski
+Last update: 18.05.2023
 """
 import sys, os
+
+def print_help():  
+    help_text = """
+
+    """
+    
+    print(help_text)  
+
 
 ### Seting the file names                                                  ###
 sys_argv_len = len(sys.argv)
@@ -20,6 +31,14 @@ if sys_argv_len > 2:
     output_fname = sys.argv[2]
 else:
     output_fname = None
+
+if inp_f_name == "-h":
+    print_help()
+    sys.exit(1)
+
+if inp_f_name == None:
+    print("gaussian point charges file name must be provided as the first argument \n")
+    sys.exit(1)
 
 if not os.path.isfile(inp_f_name):
     print("Input file (with Gaussian point charges) not found \n")
